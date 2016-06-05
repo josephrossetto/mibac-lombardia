@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:Page id="Page" xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:glza="org.glizy.admin.components.*" xmlns:m="LdC2.*" templateType="php" templateFileName="adminPage.php" defaultEditableRegion="admincontent">
+<glz:Import src="Common.xml" />
+<glz:DataProvider id="dp" recordClassName="LdC2.models.LdC2" />
+<glz:StateSwitch id="dataGridEdit" defaultState="list" rememberState="true" forceChildCreation="true" customClass="org.minervaeurope.museoweb.modulesBuilder.AdminModuleStateController">
+<glz:State name="list">
+<glz:Form id="editForm">
+<glz:DataGrid id="dataGrid" label="{i18n:Elenco record}" dataProvider="{dp}" filters="{filters}" cssClass="odd,even" paginate="{dataGridPaginate}" controller="{dataGridEdit}">
+<glz:DataGridColumn columnName="" visible="false" key="true" />
+<glz:DataGridColumn columnName="column__" headerText="{i18n:LdC2_column__}" />
+<glz:DataGridColumn command="edit" width="20" visible="{php:$user->acl('EditRecord','edit')}" />
+<glz:DataGridColumn command="delete" width="20" visible="{php:$user->acl('EditRecord','delete')}" />
+</glz:DataGrid>
+<glz:PaginateResult id="dataGridPaginate" cssClass="pagination" />
+<glz:Panel cssClass="formButton" >
+<glz:Button value="{i18n:GLZ_ADD_NEW_RECORD}" target="{dataGridEdit}" action="new" actionType="location" cssClass="submit_button" visible="{php:$user->acl('EditRecord','new')}" />
+</glz:Panel>
+</glz:Form>
+<glz:Form id="filtersForm">
+<glza:FiltersFromModel id="filters" label="{i18n:GLZ_SEARCH_FILTERS}" target="{filtersForm}" recordClassName="LdC2.models.LdC2" />
+<glz:Panel cssClass="formButton">
+<glz:Button value="{i18n:GLZ_SEARCH}" type="submit" target="{filtersForm}" action="SEARCH" /> 
+<glz:Button value="{i18n:GLZ_RESET}" type="submit" target="{filtersForm}" action="RESET" />
+</glz:Panel>
+</glz:Form>
+</glz:State>
+<glz:State name="new,edit,delete,publish">
+<glza:JSEditRecord id="editRecord" label="{i18n:Dettaglio record}" action="{php:$this->_parent->getState()}" dataProvider="{dp}" controller="{dataGridEdit}" />
+<glz:Panel cssClass="formButton">
+<glz:Button value="{i18n:GLZ_SAVE}" action="Glizy.pageContent.save()" cssClass="submit_button" visible="{php:$user->acl('EditRecord','edit')}" />
+<glz:Button value="{i18n:GLZ_SAVE_CLOSE}" action="Glizy.pageContent.save(false,false,'ajaxProcessAction=close')" cssClass="submit_button" />
+<glz:Button value="{i18n:GLZ_CANCEL}" target="{dataGridEdit}" action="reset" actionType="location" cssClass="submit_button" visible="true" />
+</glz:Panel>
+</glz:State>
+<glz:State name="import">
+<glz:MessageBox type="ERROR" cssClass="message failure"/>
+<glz:LongText><![CDATA[	Seleziona il file da importare e le proprietà che indicano i caratteri delimitatori contenuti nel file CSV.<br />La tabella del database avrà lo stesso nome del file CSV, se la tabella è già presente i record verranno aggiunti; se la tabella è presente e il numero dei campi è differente il file non verrà importato.<br />Il file CSV deve avere la prima riga con i nomi dei campi.]]></glz:LongText>
+<glz:Form id="myForm" removeGetValues="false" enctype="multipart/form-data">
+<glz:Input id="mbCsvFile" type="file" label="{i18n:File da importare}" size="50" required="true" cssClass="validate['required']" />
+<glz:Input id="mbCsvSeparate" label="{i18n:Terminatore campo}" size="4" maxLength="1" value=";" required="true" cssClass="validate['required']" />
+<glz:Input id="mbCsvEnclose" label="{i18n:Delimitatore campo}" size="4" maxLength="1" value="&amp;quot;" required="true" cssClass="validate['required']" />
+<glz:Input id="mbCsvEscape" label="{i18n:Carattere di escape}" size="4" maxLength="1" value="\" required="true" cssClass="validate['required']" />
+<glz:List id="mbCsvEncoding" label="{i18n:Codifica}"><glz:ListItem key="latin1" value="{i18n:Latin-1}" /><glz:ListItem key="utf8" value="{i18n:UTF-8}" />	</glz:List>
+<glz:Checkbox id="mbCsvDrop" label="{i18n:Cancella i dati prima di importare}" />
+<glz:Panel cssClass="formButton">
+<glz:HtmlButton label="{i18n:Importa}" id="next" value="next" name="action" cssClass="submit" />
+</glz:Panel>
+</glz:Form>
+</glz:State>
+<glz:State name="importConfirm">
+<glz:LongText><![CDATA[Importazione avvenuta con successo.]]></glz:LongText>
+</glz:State>
+<glz:State name="deleteModule">
+<glz:LongText><![CDATA[	Sei sicuro di vole cancellare il modulo?<br />Verranno cancellati i file del modulo e la pagina nella struttura del sito.]]></glz:LongText>
+<glz:Form id="myForm" removeGetValues="false">
+<glz:Panel cssClass="formButton">
+<glz:HtmlButton label="{i18n:Cancella modulo}" id="next" value="next" name="action" cssClass="submit" />
+</glz:Panel>
+</glz:Form>
+</glz:State>
+</glz:StateSwitch>
+</glz:Page>

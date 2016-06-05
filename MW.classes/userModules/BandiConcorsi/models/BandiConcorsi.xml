@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+model:create="true" model:tableName="BandiConcorsi" model:autoGenerate="true" model:usePrefix="false">"
+<glz:Hidden id="" model:primaryKey="true" />
+<glz:Text id="column_oggetto" label="{i18n:BandiConcorsi_column_oggetto}" model:required="true" adm:size="90" />
+<glz:Text id="column_tipo" label="{i18n:BandiConcorsi_column_tipo}" model:required="true" adm:size="90" />
+<glz:Date id="column_scadenza" label="{i18n:BandiConcorsi_column_scadenza}" model:required="false" />
+<glz:Date id="column_data_pubblicazione" label="{i18n:BandiConcorsi_column_data_pubblicazione}" model:required="true" />
+<glz:Text id="column_pubblicato" label="{i18n:BandiConcorsi_column_pubblicato}" model:required="false" adm:size="90" />
+<glz:Text id="column_ufficio_emittente" label="{i18n:BandiConcorsi_column_ufficio_emittente}" model:required="false" adm:size="90" />
+<glz:LongText id="column_riferimenti_per_informazioni" label="{i18n:BandiConcorsi_column_riferimenti_per_informazioni}" adm:rows="12" adm:cols="75" adm:htmlEditor="false" model:required="false" />
+<glz:LongText id="column_note" label="{i18n:BandiConcorsi_column_note}" adm:rows="12" adm:cols="75" adm:htmlEditor="false" model:required="false" />
+<glz:Text id="column_numero_e_data_gazz_uff" label="{i18n:BandiConcorsi_column_numero_e_data_gazz_uff}" model:required="false" adm:size="90" />
+<glz:Text id="column_base_dasta" label="{i18n:BandiConcorsi_column_base_dasta}" model:required="false" adm:size="90" />
+<glz:Text id="column_decreto_di_aggiudicazione" label="{i18n:BandiConcorsi_column_decreto_di_aggiudicazione}" model:required="false" adm:size="90" />
+<glz:LinkTo id="column_link_esterno" label="{i18n:BandiConcorsi_column_link_esterno}" />
+<glz:LinkTo id="column_documenti_da_scaricare" label="{i18n:BandiConcorsi_column_documenti_da_scaricare}" />
+<glz:Hidden id="column13" />
+</glz:EmptyComponent>

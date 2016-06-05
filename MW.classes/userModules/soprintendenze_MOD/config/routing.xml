@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:Routing>
+<glz:Route name="soprintendenze_MOD" value="{language}/{pageId=userModule_soprintendenze_MOD}/soprintendenze_MOD/{static=state=show}/{integer=}" />
+</glz:Routing>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent
+	xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+	model:create="true" model:type="2tables" model:tableName="events_tbl,eventsdetails_tbl" model:joinFields="event_id,eventdetail_FK_event_id" model:autoGenerate="true" model:usePrefix="true">
+	<glz:DataDictionary id="categoryDP" recordClassName="org.minervaeurope.museoweb.models.Event" field="eventdetail_category" />
+	<glz:DataDictionary id="placeDP" recordClassName="org.minervaeurope.museoweb.models.Event" field="eventdetail_place" />
+	<glz:DataDictionary id="promoterDP" recordClassName="org.minervaeurope.museoweb.models.Event" field="eventdetail_promoter" />
+	<glz:ModelDefine>
+		<glz:Query name="eventsHome">
+		<![CDATA[
+			##SELECT_ALL## WHERE eventdetail_inHome=1 AND eventdetail_versionStatus='PUBLISHED' AND eventdetail_isLittaEvent!='1' AND (eventdetail_endDate>=NOW() OR eventdetail_endDate IS NULL OR eventdetail_endDate='0000-00-00') ORDER BY eventdetail_inHomeOrder DESC, eventdetail_realDate DESC   
+		]]>
+		</glz:Query>
+		
+		<glz:Query name="littaEventsHome">
+		<![CDATA[
+			##SELECT_ALL## WHERE eventdetail_inHome=1 AND eventdetail_versionStatus='PUBLISHED' AND eventdetail_isLittaEvent='1' AND (eventdetail_endDate>=NOW() OR eventdetail_endDate IS NULL OR eventdetail_endDate='0000-00-00') ORDER BY eventdetail_realDate ASC   
+		]]>
+		</glz:Query>
+
+		<glz:Query name="filterYear">
+		<![CDATA[
+			SELECT DISTINCT UPPER(event_year) as event_year FROM ##TABLE_NAME## ORDER BY event_year
+		]]>
+		</glz:Query>
+		<glz:Query name="filterCategory">
+		<![CDATA[
+			SELECT DISTINCT UPPER(event_category) as event_category FROM ##TABLE_NAME## ORDER BY event_category
+		]]>
+		</glz:Query>
+		<glz:Query name="filterPlace">
+		<![CDATA[
+			SELECT DISTINCT UPPER(event_place) as event_place FROM ##TABLE_NAME## ORDER BY event_place
+		]]>
+		</glz:Query>
+		<glz:ModelField name="event_creationDate" attribute="defaultInsertValue" value="NOW()" />
+		<glz:ModelField name="event_modificationDate" attribute="defaultInsertValue" value="NOW()" />
+		<glz:ModelField name="event_modificationDate" attribute="defaultUpdateValue" value="NOW()" />
+		<glz:Relation name="events2media" type="joinTable" className="org.glizy.models.Join" bindTo="media" field="join_FK_source_id" destinationField="join_FK_dest_id" objectName="events_tbl" />
+	</glz:ModelDefine>
+	<glz:Hidden id="event_id" model:primaryKey="true" />
+	<glz:Hidden id="event_creationDate" model:type="dateTime" />
+	<glz:Hidden id="event_modificationDate" />
+	<glz:Hidden id="eventdetail_id" model:detailTable="true" model:primaryKey="true" />
+	<glz:Hidden id="eventdetail_FK_event_id" model:detailTable="true" />
+	<glz:Hidden id="eventdetail_FK_language_id" model:detailTable="true" model:type="language" />
+  <glz:Hidden id="eventdetail_FK_user_id" model:detailTable="true" />
+	<glz:Hidden id="eventdetail_versionDate" model:detailTable="true" model:type="versionDate" />
+	<glz:Hidden id="eventdetail_versionStatus" model:detailTable="true" model:type="versionStatus" />	
+	<glz:Date id="eventdetail_realDate" label="{i18n:MW_EVENTS_REALDATE}" model:detailTable="true" model:required="true" />
+	<glz:Date id="eventdetail_endDate" label="{i18n:MW_EVENTS_ENDDATE}" model:detailTable="true" />
+	<glz:Text id="eventdetail_date" label="{i18n:MW_EVENTS_DATE}" model:detailTable="true" />
+	<glz:Number id="eventdetail_year" label="{i18n:MW_EVENTS_YEAR}" model:detailTable="true" adm:size="10" />
+	<glz:Checkbox id="eventdetail_inHome" label="{i18n:MW_EVENTS_PUBLISHED}" model:detailTable="true" />
+	<glz:Checkbox id="eventdetail_isLittaEvent" label="{i18n:MW_EVENTS_IS_LITTA_EVENT}" model:detailTable="true" />
+  <glz:Number id="eventdetail_inHomeOrder" label="{I18N:MW_EVENTS_PUBLICATION_ORDER}" model:detailTable="true" adm:size="5" />
+	<glz:Text id="eventdetail_title" label="{i18n:MW_EVENTS_TITLE}" model:detailTable="true" model:required="true" adm:size="90" />
+	<glz:List id="eventdetail_category" label="{i18n:MW_EVENTS_CATEGORY}" dataProvider="{categoryDP}" value="{php:$this->_parent}" size="90" required="true" model:detailTable="true" adm:suggest="true" />
+	<glz:List id="eventdetail_place" label="{i18n:MW_EVENTS_PLACE}" dataProvider="{placeDP}" value="{php:$this->_parent}" size="90" required="true" model:detailTable="true" adm:suggest="true" />
+	<glz:List id="eventdetail_promoter" label="{i18n:MW_EVENTS_PROMOTER}" dataProvider="{promoterDP}" value="{php:$this->_parent}" size="90" model:detailTable="true" adm:suggest="true" />
+	<glz:LongText id="eventdetail_description" label="{i18n:MW_EVENTS_DESCRIPTION}" model:detailTable="true" model:required="true" adm:rows="12" adm:cols="75" adm:htmlEditor="true" forceP="true" />
+	<glz:LongText id="eventdetail_shortDescription" label="{i18n:MW_EVENTS_SHORTDESCRIPTION}" model:detailTable="true" model:required="true" adm:rows="12" adm:cols="75" adm:htmlEditor="true" forceP="true" />
+	<glz:Email id="eventdetail_email" label="{i18n:MW_EVENTS_EMAIL}" model:detailTable="true" />
+	<glz:Text id="eventdetail_url" label="{i18n:MW_EVENTS_URL}" model:detailTable="true" />
+	<glz:Image id="eventdetail_image" label="{i18n:MW_EVENTS_IMAGE}" width="150" height="150" model:detailTable="true" cssClass="thumb" />
+	<glz:Repeater id="media" label="{i18n:MW_LINKED_MEDIA}" simpleMode="true" model:type="virtual">
+		<glz:Media id="media_id" label="{i18n:MW_DOCUMENT}" linkTitle="{i18n:MW_DOWNLOAD_FILE_LINK}" model:detailTable="true" model:type="virtual" />
+	</glz:Repeater>
+</glz:EmptyComponent>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent
+	xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+	xmlns:mw="org.minervaeurope.museoweb.*"
+	model:create="true" model:type="2tables" model:tableName="competitions_tbl,competitiondetails_tbl" model:joinFields="competition_id,competitiondetail_FK_competition_id" model:autoGenerate="true" model:usePrefix="true">
+	<glz:DataDictionary id="typeDP" recordClassName="org.minervaeurope.museoweb.models.Competition" field="competitiondetail_type,competitiondetail_type" />
+	<glz:DataDictionary id="officeDP" recordClassName="org.minervaeurope.museoweb.models.Competition" field="competitiondetail_office,competitiondetail_office" />
+	<glz:ModelDefine>
+	<glz:Query name="publishedCompetition">
+        <![CDATA[
+           ##SELECT_ALL## WHERE competitiondetail_isPublished=1 ORDER BY competitiondetail_duedate DESC
+        ]]>
+        </glz:Query> 
+		<glz:ModelField name="competition_creationDate" attribute="defaultInsertValue" value="NOW()" />
+		<glz:ModelField name="competition_modificationDate" attribute="defaultInsertValue" value="NOW()" />
+		<glz:ModelField name="competition_modificationDate" attribute="defaultUpdateValue" value="NOW()" />
+		<glz:Relation name="competition2media" type="joinTable" className="org.glizy.models.Join" bindTo="media" field="join_FK_source_id" destinationField="join_FK_dest_id" objectName="competitions_tbl" />
+	</glz:ModelDefine>
+	<glz:Hidden id="competition_id" model:primaryKey="true" />
+	<glz:Hidden id="competition_creationDate" />
+	<glz:Hidden id="competition_modificationDate" />
+	<glz:Hidden id="competitiondetail_id" model:detailTable="true" model:primaryKey="true" />
+	<glz:Hidden id="competitiondetail_FK_competition_id" model:detailTable="true" />
+	<glz:Hidden id="competitiondetail_FK_language_id" model:detailTable="true" model:type="language" />
+	<glz:Hidden id="competitiondetail_FK_user_id" model:detailTable="true" />
+	<glz:Hidden id="competitiondetail_versionDate" model:detailTable="true" model:type="versionDate" />
+	<glz:Hidden id="competitiondetail_versionStatus" model:detailTable="true" model:type="versionStatus" />
+	<glz:Text id="competitiondetail_title" label="{i18n:MW_COMPETITION_TITLE}" model:detailTable="true" model:required="true" adm:size="90" />
+	<glz:List id="competitiondetail_type" label="{i18n:MW_COMPETITION_TYPE}" dataProvider="{typeDP}" value="{php:$this->_parent}" size="90" required="true" model:detailTable="true" adm:suggest="true" />
+	<glz:Date id="competitiondetail_duedate" label="{i18n:MW_COMPETITION_DUEDATE}" model:detailTable="true" />
+	<glz:Date id="competitiondetail_pubdate" label="{i18n:MW_COMPETITION_PUBDATE}" model:detailTable="true" model:required="true" />
+	<glz:Checkbox id="competitiondetail_isPublished" label="{i18n:MW_COMPETITION_ISPUBLISHED}" model:detailTable="true" />
+  <glz:List id="competitiondetail_office" label="{i18n:MW_COMPETITION_OFFICE}" dataProvider="{officeDP}" value="{php:$this->_parent}" size="90" model:detailTable="true" adm:suggest="true" />
+	<glz:LongText id="competitiondetail_info" label="{i18n:MW_COMPETITION_INFO}" model:detailTable="true" adm:rows="12" adm:cols="75" adm:htmlEditor="true" forceP="true" />
+	<glz:LongText id="competitiondetail_note" label="{i18n:MW_COMPETITION_NOTE}" model:detailTable="true" adm:rows="12" adm:cols="75" adm:htmlEditor="true" forceP="true" />
+	<glz:Text id="competitiondetail_numdate" label="{i18n:MW_COMPETITION_NUMERDATE}" model:detailTable="true" />
+	<glz:Text id="competitiondetail_auction" label="{i18n:MW_COMPETITION_AUCTION}" model:detailTable="true" />
+	<glz:Text id="competitiondetail_decree" label="{i18n:MW_COMPETITION_DECREE}" model:detailTable="true" />
+	<glz:Text id="competitiondetail_url" label="{i18n:MW_COMPETITION_URL}" model:detailTable="true" />
+	<glz:Repeater id="media" label="{i18n:MW_LINKED_MEDIA}" simpleMode="true" model:type="virtual">
+		<glz:Media id="media_id" label="{i18n:MW_DOCUMENT}" linkTitle="{i18n:MW_DOWNLOAD_FILE_LINK}" model:detailTable="true" model:type="virtual" />
+	</glz:Repeater>
+</glz:EmptyComponent>

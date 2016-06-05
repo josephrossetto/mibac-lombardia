@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent
+	xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+	model:create="true" model:tableName="users_tbl" model:autoGenerate="true" model:usePrefix="true">
+	<glz:DataDictionary id="usergroupsDP" recordClassName="org.glizy.models.UserGroup" field="usergroup_id,usergroup_name" query="userGroupsAdmin" />
+	<glz:ModelDefine>
+		<glz:Query name="usersBackend">
+		<![CDATA[
+			SELECT * FROM ##TABLE_NAME##
+				INNER JOIN ##TABLE_PREFIX##usergroups_tbl ON (user_FK_userGroup_id=userGroup_id)
+				WHERE userGroup_backEndAccess = 1 
+		]]>
+		</glz:Query>
+		<glz:Query name="users">
+		<![CDATA[
+			SELECT * FROM ##TABLE_NAME##
+				INNER JOIN ##TABLE_PREFIX##usergroups_tbl ON (user_FK_userGroup_id=userGroup_id)
+				WHERE userGroup_backEndAccess = 0
+		]]>
+		</glz:Query>
+		<glz:ModelField name="user_dateCreation" attribute="defaultInsertValue" value="NOW()" />
+	</glz:ModelDefine>
+	<glz:Hidden id="user_id" model:primaryKey="true" />
+	<glz:Hidden id="user_dateCreation" />
+	<glz:Checkbox id="user_isActive" label="{i18n:MW_USER_ENABLED}" defaultStatus="on" />
+	<glz:Text id="user_loginId" label="{i18n:MW_USER_USERNAME}" model:required="true" />
+	<glz:Text id="user_password" label="{i18n:MW_USER_PSW}" model:required="true" />
+	<glz:Text id="user_checkpassword" label="{i18n:MW_USER_CHECKPSW}" model:required="true" />
+	<glz:List id="user_FK_userGroup_id" label="{i18n:MW_USER_GROUP}" value="{php:$this->_parent}" dataProvider="{usergroupsDP}" emptyValue="-"  required="true" />
+	<glz:Text id="user_firstName" label="{i18n:MW_USER_NAME}" model:required="true" />
+	<glz:Text id="user_lastName" label="{i18n:MW_USER_SURNAME}" model:required="true" />
+	<glz:Text id="user_companyName" label="{i18n:MW_USER_COMPANY}" />
+	<glz:Text id="user_title" label="{i18n:MW_USER_TITLE}" />
+	<glz:Text id="user_position" label="{i18n:MW_USER_JOBTITLE}" />
+	<glz:Text id="user_department" label="{i18n:MW_USER_DEPARTMENT}" />
+	<glz:LongText id="user_address" label="{i18n:MW_USER_ADDRESS}" adm:rows="6" adm:cols="75" adm:htmlEditor="false" />
+	<glz:Text id="user_city" label="{i18n:MW_USER_CITY}" />
+	<glz:Text id="user_zip" label="{i18n:MW_USER_ZIP}" />
+	<glz:Text id="user_state" label="{i18n:MW_USER_STATE}" />
+	<glz:Text id="user_email" label="{i18n:MW_USER_EMAIL}" model:required="true" />
+	<glz:Text id="user_phone" label="{i18n:MW_USER_PHONE}" />
+	<glz:Text id="user_mobile" label="{i18n:MW_USER_MOBILE}" />
+	<glz:Text id="user_phone2" label="{i18n:MW_USER_PHONE2}" />
+	<glz:Text id="user_fax" label="{i18n:MW_USER_FAX}" />
+	<glz:Text id="user_www" label="{i18n:MW_USER_WEB}" />
+	<glz:Checkbox id="user_wantNewsletter" label="{i18n:MW_USER_NEWSLETTER}" defaultStatus="on" />
+	<glz:Checkbox id="user_isInMailinglist" label="{i18n:MW_USER_MAILINGLIST}" defaultStatus="on" />
+</glz:EmptyComponent>

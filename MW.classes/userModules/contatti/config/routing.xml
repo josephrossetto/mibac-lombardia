@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:Routing>
+<glz:Route name="contatti" value="{language}/{pageId=userModule_contatti}/contatti/{static=state=show}/{integer=contatti_id}" />
+</glz:Routing>

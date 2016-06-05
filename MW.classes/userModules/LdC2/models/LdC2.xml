@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+model:create="true" model:tableName="LdC2" model:autoGenerate="true" model:usePrefix="false">"
+<glz:Hidden id="" model:primaryKey="true" />
+<glz:Text id="column__" label="{i18n:LdC2_column__}" model:required="true" adm:size="90" />
+</glz:EmptyComponent>

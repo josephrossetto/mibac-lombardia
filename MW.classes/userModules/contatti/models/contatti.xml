@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+model:create="true" model:tableName="contatti" model:autoGenerate="true" model:usePrefix="false">"
+<glz:Hidden id="contatti_id" model:primaryKey="true" />
+<glz:Text id="column_nome" label="{i18n:contatti_column_nome}" model:required="false" adm:size="90" />
+<glz:DataDictionary id="column_ufficioDP" recordClassName="contatti.models.contatti" field="column_ufficio" />
+<glz:List id="column_ufficio" label="{i18n:contatti_column_ufficio}" dataProvider="{column_ufficioDP}" value="{php:$this->_parent}" size="90" required="false" adm:suggest="true" />
+<glz:Text id="column_titolo" label="{i18n:contatti_column_titolo}" model:required="false" adm:size="90" />
+<glz:Text id="column_posizione" label="{i18n:contatti_column_posizione}" model:required="false" adm:size="90" />
+<glz:Text id="column_email" label="{i18n:contatti_column_email}" model:required="false" adm:size="90" />
+<glz:Text id="column_telefono" label="{i18n:contatti_column_telefono}" model:required="false" adm:size="90" />
+<glz:Text id="column_collaborazione" label="{i18n:contatti_column_collaborazione}" model:required="false" adm:size="90" />
+<glz:Text id="column_presenze" label="{i18n:contatti_column_presenze}" model:required="false" adm:size="90" />
+<glz:Text id="column_miscellanea" label="{i18n:contatti_column_miscellanea}" model:required="false" adm:size="90" />
+</glz:EmptyComponent>

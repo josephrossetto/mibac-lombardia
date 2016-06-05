@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent
+	xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+	model:create="true" model:tableName="dr_media_tbl" model:autoGenerate="true" model:usePrefix="true">
+	<glz:DataDictionary id="categoryDP" recordClassName="org.glizy.models.Media" field="media_category,media_category" query="categories" />
+	<glz:DataDictionary id="authorDP" recordClassName="org.glizy.models.Media" field="media_author,media_author" />
+	<glz:DataDictionary id="copyrightDP" recordClassName="org.glizy.models.Media" field="media_copyright,media_copyright" />
+	<glz:ModelDefine>
+		<glz:Query name="allMedia">
+		<![CDATA[
+			##SELECT_ALL##
+		]]>
+		</glz:Query>
+		<glz:Query name="allImage">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='IMAGE'
+		]]>
+		</glz:Query>
+		<glz:Query name="allOffice">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='OFFICE'
+		]]>
+		</glz:Query>
+		<glz:Query name="allPdf">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='PDF'
+		]]>
+		</glz:Query>
+		<glz:Query name="allArchive">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='ARCHIVE'
+		]]>
+		</glz:Query>
+		<glz:Query name="allFlash">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='FLASH'
+		]]>
+		</glz:Query>
+		<glz:Query name="allAudio">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='AUDIO'
+		]]>
+		</glz:Query>
+		<glz:Query name="allVideo">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='VIDEO'
+		]]>
+		</glz:Query>
+		<glz:Query name="allOther">
+		<![CDATA[
+			##SELECT_ALL## WHERE media_type='OTHER'
+		]]>
+		</glz:Query>
+		<glz:Query name="categories">
+		<![CDATA[
+			SELECT DISTINCT media_category as k, media_category as v FROM ##TABLE_PREFIX##media_tbl WHERE 1=1 ORDER BY v
+		]]>
+		</glz:Query>
+    <glz:Query name="slidesHome">
+		<![CDATA[
+			##SELECT_ALL## WHERE  media_category='slideshow'
+		]]>
+		</glz:Query>	
+		<glz:Query name="isHomeSlideshow">
+		<![CDATA[
+			##SELECT_ALL## WHERE  media_isHomeSlideshow=1
+		]]>
+		</glz:Query>			
+		<glz:ModelField name="media_creationDate" attribute="defaultInsertValue" value="NOW()" />
+		<glz:ModelField name="media_modificationDate" attribute="defaultInsertValue" value="NOW()" />
+		<glz:ModelField name="media_modificationDate" attribute="defaultUpdateValue" value="NOW()" />
+	</glz:ModelDefine>
+	<glz:Hidden id="media_id" model:primaryKey="true" />
+	<!--<glz:Hidden id="media_FK_language_id" model:detailTable="true" model:type="language" />-->
+	<glz:Hidden id="media_creationDate" />
+	<glz:Hidden id="media_modificationDate" />
+	<glz:Hidden id="media_FK_user_id" value="1" />
+	<glz:Hidden id="media_type" />
+	<glz:Hidden id="media_size" />
+	<glz:Hidden id="media_fileName" />
+	
+  <glz:Text id="media_title" label="{i18n:MW_MEDIA_TITLE}" model:adm:size="90" />
+  <glz:Checkbox id="media_isHomeSlideshow" label="{i18n:MW_MEDIA_HOMESLIDESHOW}" />
+	<glz:LongText id="media_linktitle" label="{i18n:MW_MEDIA_LINKTITLE}" model:detailTable="true" model:required="true" adm:rows="12" adm:cols="75" adm:htmlEditor="true" forceP="true" />
+	
+	<glz:Text id="media_originalFileName" label="{i18n:MW_MEDIA_FILENAME}" adm:readOnly="true" />
+	<glz:List id="media_category" label="{i18n:MW_MEDIA_CATEGORY}" dataProvider="{categoryDP}" value="{php:$this->_parent}" size="90" model:detailTable="true" adm:suggest="true" adm:suggestAdd="true" adm:suggestDelimiter=";" />
+	<glz:List id="media_author" label="{i18n:MW_MEDIA_AUTHOR}" dataProvider="{authorDP}" value="{php:$this->_parent}" size="90" model:detailTable="true" adm:suggest="true" adm:suggestAdd="false" adm:suggestDelimiter=";" />
+	<glz:Text id="media_date" label="{i18n:MW_MEDIA_DATE}" />
+	<glz:List id="media_copyright" label="{i18n:MW_MEDIA_COPYRIGHT}" dataProvider="{copyrightDP}" value="{php:$this->_parent}" size="90" model:detailTable="true" adm:suggest="true" adm:suggestAdd="false"  adm:suggestDelimiter=";" />
+	<glz:Checkbox id="media_zoom" label="{i18n:MW_MEDIA_ZOOM}" />
+</glz:EmptyComponent>

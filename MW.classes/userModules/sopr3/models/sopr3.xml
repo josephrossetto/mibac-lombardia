@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+model:create="true" model:tableName="sopr3" model:autoGenerate="true" model:usePrefix="false">"
+<glz:Hidden id="" model:primaryKey="true" />
+<glz:Text id="column_istituto" label="{i18n:sopr3_column_istituto}" model:required="true" adm:size="90" />
+<glz:Hidden id="column_afferenze" />
+<glz:Text id="column_dirigente" label="{i18n:sopr3_column_dirigente}" model:required="false" adm:size="90" />
+<glz:Text id="column_indirizzo" label="{i18n:sopr3_column_indirizzo}" model:required="false" adm:size="90" />
+<glz:Text id="column_tel" label="{i18n:sopr3_column_tel}" model:required="false" adm:size="90" />
+<glz:Text id="column_fax" label="{i18n:sopr3_column_fax}" model:required="false" adm:size="90" />
+<glz:Text id="column_web" label="{i18n:sopr3_column_web}" model:required="false" adm:size="90" />
+</glz:EmptyComponent>

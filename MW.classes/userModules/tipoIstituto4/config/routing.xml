@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:Routing>
+<glz:Route name="tipoIstituto4" value="{language}/{pageId=userModule_tipoIstituto4}/tipoIstituto4/{static=state=show}/{integer=}" />
+</glz:Routing>

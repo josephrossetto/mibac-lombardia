@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:Routing>
+<glz:Route name="Isituti_periferici3" value="{language}/{pageId=userModule_Isituti_periferici3}/Isituti_periferici3/{static=state=show}/{integer=}" />
+</glz:Routing>

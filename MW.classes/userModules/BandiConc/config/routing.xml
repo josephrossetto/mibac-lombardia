@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:Routing>
+<glz:Route name="BandiConc" value="{language}/{pageId=userModule_BandiConc}/BandiConc/{static=state=show}/{integer=}" />
+</glz:Routing>

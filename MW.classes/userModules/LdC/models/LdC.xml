@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<glz:EmptyComponent xmlns:glz="http://www.glizy.org/dtd/1.0/" xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+model:create="true" model:tableName="LdC" model:autoGenerate="true" model:usePrefix="false">"
+<glz:Hidden id="" model:primaryKey="true" />
+<glz:Text id="column_denom" label="{i18n:LdC_column_denom}" model:required="true" adm:size="90" />
+<glz:Text id="column_ente_com" label="{i18n:LdC_column_ente_com}" model:required="false" adm:size="90" />
+<glz:Text id="column_tipol" label="{i18n:LdC_column_tipol}" model:required="false" adm:size="90" />
+<glz:Text id="column_categ" label="{i18n:LdC_column_categ}" model:required="false" adm:size="90" />
+<glz:Text id="column_ind" label="{i18n:LdC_column_ind}" model:required="false" adm:size="90" />
+<glz:Text id="column_loc" label="{i18n:LdC_column_loc}" model:required="false" adm:size="90" />
+<glz:Text id="column_cap" label="{i18n:LdC_column_cap}" model:required="false" adm:size="90" />
+<glz:Text id="column_comune" label="{i18n:LdC_column_comune}" model:required="false" adm:size="90" />
+<glz:Text id="column_prov" label="{i18n:LdC_column_prov}" model:required="false" adm:size="90" />
+<glz:Text id="column_regione" label="{i18n:LdC_column_regione}" model:required="false" adm:size="90" />
+<glz:Text id="column_orario" label="{i18n:LdC_column_orario}" model:required="false" adm:size="90" />
+<glz:Text id="column_responsabile" label="{i18n:LdC_column_responsabile}" model:required="false" adm:size="90" />
+<glz:Text id="column_telefono" label="{i18n:LdC_column_telefono}" model:required="false" adm:size="90" />
+<glz:Text id="column_fax" label="{i18n:LdC_column_fax}" model:required="false" adm:size="90" />
+<glz:Text id="column_email" label="{i18n:LdC_column_email}" model:required="false" adm:size="90" />
+<glz:Text id="column_web" label="{i18n:LdC_column_web}" model:required="false" adm:size="90" />
+</glz:EmptyComponent>
