@@ -18,6 +18,10 @@ MW/pageTypes/Page.xml => MW/pageTypes/Page_lombardia.xml
 # Copiato file
 MW/startup/remap.php => MW/startup/remap_lombardia.php
 
+# Creato file
+admin/MW/startup/remap_lombardia.php 
+(vedi 'rimappare classi' in: https://groups.google.com/forum/#!searchin/museoweb/rimappatura|sort:relevance/museoweb/BX3EEOqh56U/YqOY3h-Ow_QJ)
+
 
 #####=================	RIMAPPARE FILES & CLASSI	=======================#####
 # Creato file: MW/startup/remap_lombardia.php
